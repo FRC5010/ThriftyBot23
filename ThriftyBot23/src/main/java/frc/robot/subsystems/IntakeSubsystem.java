@@ -14,7 +14,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   /** Creates a new IntakeSubsystem. */
   public IntakeSubsystem() {
-    motor1 = new CANSparkMax(3, MotorType.kBrushless);
+    motor1 = new CANSparkMax(7, MotorType.kBrushless);
   }
 
   public void runMotor(double speed) {

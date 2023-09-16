@@ -16,8 +16,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private DifferentialDrive diffDrive;
   /** Creates a new DrivetrainSubsystem. */
   public DrivetrainSubsystem() {
-    motor1 = new CANSparkMax(1,MotorType.kBrushless);
-    motor2 = new CANSparkMax(2, MotorType.kBrushless);
+    motor1 = new CANSparkMax(8,MotorType.kBrushless);
+    motor1.restoreFactoryDefaults();
+    motor2 = new CANSparkMax(9, MotorType.kBrushless);
+    motor2.restoreFactoryDefaults();
+    //motor1.setInverted(true);
     motor2.setInverted(true);
     diffDrive = new DifferentialDrive(motor1, motor2);
 }

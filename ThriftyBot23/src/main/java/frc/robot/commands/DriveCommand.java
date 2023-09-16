@@ -26,7 +26,7 @@ public class DriveCommand extends CommandBase {
   @Override
   public void execute() {
     double throttle = -controller.getLeftY();
-    double steer = controller.getRightX();
+    double steer = -controller.getRightX();
     driveTrain.drive(throttle, steer);
   }
 
