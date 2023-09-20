@@ -9,10 +9,12 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 public class RunIntake extends CommandBase {
   IntakeSubsystem intake;
+  double speed;
 
   /** Creates a new RunIntake. */
-  public RunIntake(IntakeSubsystem intake) {
+  public RunIntake(IntakeSubsystem intake, double speed) {
     this.intake = intake;
+    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(intake);
   }
@@ -20,7 +22,7 @@ public class RunIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.runMotor(0.25);
+    intake.runMotor(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
