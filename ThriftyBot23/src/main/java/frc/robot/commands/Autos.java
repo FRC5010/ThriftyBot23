@@ -18,7 +18,13 @@ public final class Autos {
     );
   }
 
-  
+  public static CommandBase testAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
+    return Commands.sequence(
+      new DriveForward(drivetrainSubsystem, 1).withTimeout(3)
+    );
+  }
+
+
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
