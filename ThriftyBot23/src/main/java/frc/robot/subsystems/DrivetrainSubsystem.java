@@ -37,6 +37,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motor2.set(0);
   }
 
+  public void turnMotors(double speed){
+    motor1.set(-speed);
+    motor2.set(speed);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
