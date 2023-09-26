@@ -9,20 +9,24 @@ import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
-  public static CommandBase exampleAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
+  public static CommandBase defaultAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
     return Commands.sequence(
-      new RunIntake(intakeSubsystem, 0.75).withTimeout(3), new DriveForward(drivetrainSubsystem, 0.5).withTimeout(10)
+      new RunIntake(intakeSubsystem, 0.75).withTimeout(3),
+      new InstantCommand(()-> drivetrainSubsystem.resetGyro(180)),
+      new DriveForward(drivetrainSubsystem, -0.5).withTimeout(1)
     );
   }
 
   public static CommandBase testAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
     return Commands.sequence(
-      new DriveForward(drivetrainSubsystem, 1).withTimeout(3)
+      new DriveForward(drivetrainSubsystem, -0.5).withTimeout(3)
     );
   }
+
 
 
 

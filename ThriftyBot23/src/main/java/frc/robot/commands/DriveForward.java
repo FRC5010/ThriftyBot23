@@ -7,9 +7,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
+
 public class DriveForward extends CommandBase {
+  private final double HEADING_DIVIDER_PERCENT = 360.0;
   private DrivetrainSubsystem drivetrainSubsystem;
   private double speed;
+  private double initialHeading;
   /** Creates a new DriveForward. */
   public DriveForward(DrivetrainSubsystem drivetrainSubsystem, double speed) {
     this.drivetrainSubsystem = drivetrainSubsystem;
@@ -21,13 +24,18 @@ public class DriveForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    initialHeading = drivetrainSubsystem.getHeading();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrainSubsystem.runMotor(speed);
+    double heading = drivetrainSubsystem.getHeading();
+    double error = heading - initialHeading;
+    System.out.print("Error: "+error);
+    System.out.print(" Percent: "+error/HEADING_DIVIDER_PERCENT);
+    System.out.println(" Speed: "+speed);
+    drivetrainSubsystem.drive(speed, error/HEADING_DIVIDER_PERCENT);
   }
 
   // Called once the command ends or is interrupted.

@@ -4,9 +4,11 @@
 
 package frc.robot.subsystems;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -14,6 +16,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private CANSparkMax motor1;
   private CANSparkMax motor2;
   private DifferentialDrive diffDrive;
+  private AHRS gyro;
   /** Creates a new DrivetrainSubsystem. */
   public DrivetrainSubsystem() {
     motor1 = new CANSparkMax(8,MotorType.kBrushless);
@@ -23,6 +26,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
     //motor1.setInverted(true);
     motor2.setInverted(true);
     diffDrive = new DifferentialDrive(motor1, motor2);
+    gyro = new AHRS(Port.kUSB);
 }
   public void drive(double throttle, double steer){
     diffDrive.arcadeDrive(throttle, steer);
@@ -40,6 +44,21 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void turnMotors(double speed){
     motor1.set(-speed);
     motor2.set(speed);
+  }
+
+  public void resetGyro(double heading){
+    System.out.println("Gyro Command Start");
+    gyro.reset();
+    gyro.setAngleAdjustment(heading);
+    System.out.println("Gyro Command End");
+  }
+
+  public double getHeading(){
+    return gyro.getYaw();
+  }
+
+  public double getPitch(){
+    return gyro.getPitch();
   }
 
   @Override
