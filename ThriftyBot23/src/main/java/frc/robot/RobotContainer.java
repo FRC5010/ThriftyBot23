@@ -66,9 +66,7 @@ public class RobotContainer {
     m_driverController.rightTrigger().whileTrue(new RunIntake(intakeSubsystem, -1.0));
     m_driverController.b().whileTrue(new AutoBalance(driveTrain));
     driveTrain.setDefaultCommand(new DriveCommand(m_driverController, driveTrain));
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
   }
 
   /**
