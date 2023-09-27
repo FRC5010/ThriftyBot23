@@ -15,9 +15,9 @@ public final class Autos {
   /** Example static factory for an autonomous command. */
   public static CommandBase defaultAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
     return Commands.sequence(
-      new RunIntake(intakeSubsystem, 0.75).withTimeout(3),
+      new RunIntake(intakeSubsystem, -1).withTimeout(2),
       new InstantCommand(()-> drivetrainSubsystem.resetGyro(180)),
-      new DriveForward(drivetrainSubsystem, -0.5).withTimeout(1)
+      new DriveDistance(drivetrainSubsystem, -0.5, 12)
     );
   }
 

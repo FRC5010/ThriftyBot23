@@ -6,8 +6,10 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -27,6 +29,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motor2.setInverted(true);
     diffDrive = new DifferentialDrive(motor1, motor2);
     gyro = new AHRS(Port.kUSB);
+
+    motor1.getEncoder().setPositionConversionFactor(9);
+    motor2.getEncoder().setPositionConversionFactor(9);
 }
   public void drive(double throttle, double steer){
     diffDrive.arcadeDrive(throttle, steer);
@@ -55,6 +60,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public double getHeading(){
     return gyro.getYaw();
+  }
+
+  public RelativeEncoder getLeftEncoder() {
+    return motor1.getEncoder();
+  }
+
+  public RelativeEncoder getRightEncoder() {
+    return motor2.getEncoder();
   }
 
   public double getPitch(){
