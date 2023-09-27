@@ -12,6 +12,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
@@ -30,8 +31,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
     diffDrive = new DifferentialDrive(motor1, motor2);
     gyro = new AHRS(Port.kUSB);
 
-    motor1.getEncoder().setPositionConversionFactor(9);
-    motor2.getEncoder().setPositionConversionFactor(9);
+    motor1.getEncoder().setPositionConversionFactor(1/9.0);
+    motor2.getEncoder().setPositionConversionFactor(1/9.0);
+    
 }
   public void drive(double throttle, double steer){
     diffDrive.arcadeDrive(throttle, steer);

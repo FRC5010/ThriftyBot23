@@ -32,7 +32,7 @@ public class DriveDistance extends CommandBase {
     targetDistance = inchDistance;
     this.speed = speed;
 
-    initialEncoderValue = leftEncoder.getPosition();
+   
 
   
     addRequirements(drivetrainSubsystem);
@@ -43,7 +43,7 @@ public class DriveDistance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    initialEncoderValue = leftEncoder.getPosition();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -63,7 +63,7 @@ public class DriveDistance extends CommandBase {
   @Override
   public boolean isFinished() {
     double currentEncoderPosition = Math.abs(initialEncoderValue-leftEncoder.getPosition());
-    double distanceTraveled = currentEncoderPosition*RobotConstants.INCH_WHEEL_DIAMETER;
+    double distanceTraveled = currentEncoderPosition*RobotConstants.INCH_WHEEL_DIAMETER*Math.PI;
     SmartDashboard.putNumber("Distance Drive Encoder Position", currentEncoderPosition);
     return distanceTraveled >= targetDistance;
   }

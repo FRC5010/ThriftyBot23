@@ -19,4 +19,7 @@ public final class Constants {
   public static class RobotConstants {
     public static final double INCH_WHEEL_DIAMETER = 5;
   }
+  public static class FieldConstants {
+    public static final double START_TO_CROSS_DISTANCE = 12*12;
+  }
 }

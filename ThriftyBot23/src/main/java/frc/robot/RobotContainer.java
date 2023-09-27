@@ -78,4 +78,8 @@ public class RobotContainer {
     return m_chooser.getSelected();
     
   }
+
+  public void teleopPeriodic() {
+    SmartDashboard.putNumber("Encoder Value", driveTrain.getLeftEncoder().getPosition());
+  }
 }

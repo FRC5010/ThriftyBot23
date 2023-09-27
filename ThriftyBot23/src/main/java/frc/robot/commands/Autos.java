@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants.FieldConstants;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -17,7 +18,7 @@ public final class Autos {
     return Commands.sequence(
       new RunIntake(intakeSubsystem, -1).withTimeout(2),
       new InstantCommand(()-> drivetrainSubsystem.resetGyro(180)),
-      new DriveDistance(drivetrainSubsystem, -0.5, 12)
+      new DriveDistance(drivetrainSubsystem, -0.5, FieldConstants.START_TO_CROSS_DISTANCE)
     );
   }
 
