@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AutoBalance;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ExampleCommand;
@@ -63,6 +64,7 @@ public class RobotContainer {
         .onTrue(new ExampleCommand(m_exampleSubsystem));
     m_driverController.leftTrigger().whileTrue(new RunIntake(intakeSubsystem, 0.75));
     m_driverController.rightTrigger().whileTrue(new RunIntake(intakeSubsystem, -1.0));
+    m_driverController.b().whileTrue(new AutoBalance(driveTrain));
     driveTrain.setDefaultCommand(new DriveCommand(m_driverController, driveTrain));
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
