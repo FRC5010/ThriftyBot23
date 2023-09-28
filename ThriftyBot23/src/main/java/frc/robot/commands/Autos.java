@@ -22,6 +22,15 @@ public final class Autos {
     );
   }
 
+  public static CommandBase middleBalanceAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
+    return Commands.sequence(
+      new RunIntake(intakeSubsystem, -1).withTimeout(2),
+      new InstantCommand(()-> drivetrainSubsystem.resetGyro(180)),
+      new DriveDistance(drivetrainSubsystem, -0.5, FieldConstants.START_TO_DRIVESTATION),
+      new AutoBalance(drivetrainSubsystem)
+    );
+  } 
+
   public static CommandBase testAuto(DrivetrainSubsystem drivetrainSubsystem, IntakeSubsystem intakeSubsystem) {
     return Commands.sequence(
       new DriveForward(drivetrainSubsystem, -0.5).withTimeout(3)

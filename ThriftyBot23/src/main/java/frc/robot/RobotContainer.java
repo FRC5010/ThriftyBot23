@@ -29,8 +29,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private String m_autoSelected;
   private final String kDefaultAuto = "Default";
+  private final String kChargeStationAuto = "ChargeStation";
   private final SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -43,6 +43,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     m_chooser.setDefaultOption(kDefaultAuto, Autos.defaultAuto(driveTrain, intakeSubsystem));
+    m_chooser.addOption(kChargeStationAuto, Autos.middleBalanceAuto(driveTrain, intakeSubsystem));
     m_chooser.addOption("Test Auto", Autos.testAuto(driveTrain, intakeSubsystem));
     SmartDashboard.putData("Auto Chooser", m_chooser);
     // Configure the trigger bindings

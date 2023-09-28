@@ -21,5 +21,6 @@ public final class Constants {
   }
   public static class FieldConstants {
     public static final double START_TO_CROSS_DISTANCE = 12*12;
+    public static final double START_TO_DRIVESTATION = 5*12; // TODO: FIND TRUE VALUE
   }
 }
